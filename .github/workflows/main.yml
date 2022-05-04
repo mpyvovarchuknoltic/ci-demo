@@ -1,0 +1,32 @@
+name: Create Scratch Org
+
+on:
+  create:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install salesforce CLI
+        run: npm install sfdx-cli npx
+
+      - name: Authenticate devhub
+        run: |
+          echo ${{ secrets.DEVHUB_SFDXURL }} > ./sfdx-devhub-url
+          npx sfdx force:auth:sfdxurl:store --sfdxurlfile ./sfdx-devhub-url --setalias devhub
+          rm ./sfdx-devhub-url
+
+      - name: Create org
+        run: |
+          npx sfdx force:org:create -v devhub -f config/project-scratch-def.json -s -a new-org
+          npx sfdx force:source:push
+          npx sfdx force:user:password:generate -v devhub
+
+      - name: Handle fail
+        if: ${{ always() }}
+        run: |
+          npx sfdx force:org:delete -p
