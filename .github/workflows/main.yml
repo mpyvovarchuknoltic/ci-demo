@@ -26,6 +26,12 @@ jobs:
           npx sfdx force:source:push
           npx sfdx force:user:password:generate -v devhub
 
+      - name: Push source to scratch org
+        run: sfdx force:source:push
+
+      - name: Run tests
+        run: npx sfdx force:apex:test:run -l RunLocalTests -w 30
+
       - name: Handle fail
         if: ${{ always() }}
         run: |
