@@ -3,6 +3,7 @@
     <types>
         <members>DemoTest</members>
         <members>AccessToken</members>
+        <members>testsAfter</members>
         <name>ApexClass</name>
     </types>
     <version>54.0</version>
