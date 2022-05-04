@@ -14,7 +14,6 @@ jobs:
       - name: Install salesforce CLI
         run: npm install sfdx-cli npx
 
-
       - name: Populate auth file with DEVHUB_SFDX_URL secret
       run: echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
 
