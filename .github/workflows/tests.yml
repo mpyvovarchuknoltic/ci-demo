@@ -1,0 +1,44 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@mpyvovarchuknoltic 
+ytiq
+/
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install salesforce CLI
+        run: npm install sfdx-cli npx
+
+      - name: Authenticate devhub
+        run: |
+          echo ${{ secrets.DEVHUB_SFDXURL }} > ./sfdx-devhub-url
+          npx sfdx force:auth:sfdxurl:store --sfdxurlfile ./sfdx-devhub-url --setalias devhub
+          rm ./sfdx-devhub-url
+      - name: Create org
+        run: |
+          npx sfdx force:org:create -v devhub -f config/project-scratch-def.json -s -a new-org
+          npx sfdx force:source:push
+          npx sfdx force:apex:test:run -l RunLocalTests -w 30
+      - name: Handle fail
+        if: ${{ always() }}
+        run: |
+          npx sfdx force:org:delete -p
