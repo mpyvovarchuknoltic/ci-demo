@@ -4,6 +4,7 @@
         <members>DemoTest</members>
         <members>AccessToken</members>
         <members>DemoTestClass</members>
+        <members>DemoTimeTestClass</members>
         <name>ApexClass</name>
     </types>
     <version>54.0</version>

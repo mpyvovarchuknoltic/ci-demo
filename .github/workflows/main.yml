@@ -29,4 +29,4 @@ jobs:
       - name: Handle fail
         if: ${{ always() }}
         run: |
-          npx sfdx force:org:delete -p
+          npx sfdx force:org:delete -p -u
