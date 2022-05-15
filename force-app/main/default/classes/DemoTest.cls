@@ -2,6 +2,7 @@ public with sharing class DemoTest {
 
     public DemoTest() {
 //comment
+        // comment for checking tests
     }
 
 }
