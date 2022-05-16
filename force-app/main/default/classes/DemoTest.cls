@@ -4,6 +4,7 @@ public with sharing class DemoTest {
 //comment
         // comment for checking tests
         // one more comment
+        // dummy comment
     }
 
 }
