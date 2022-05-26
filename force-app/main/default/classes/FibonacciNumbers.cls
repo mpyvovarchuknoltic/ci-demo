@@ -5,7 +5,7 @@ public class FibonacciNumbers{
     }
 
     public static Boolean isSquare(Integer x){
-        return Math.sqrt(x).toString().isNumeric();
+        return String.valueOf(Math.sqrt(x)).isNumeric();
     }
 
 }
