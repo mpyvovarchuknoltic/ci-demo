@@ -5,6 +5,7 @@
         <members>DemoTestClass</members>
         <members>DemoNumbers</members>
         <members>DemoTest</members>
+        <members>DemoNumberTest</members>
         <name>ApexClass</name>
     </types>
     <version>54.0</version>
