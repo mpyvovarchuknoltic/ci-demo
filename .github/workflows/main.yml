@@ -1,7 +1,7 @@
 name: Create Scratch Org
 
 on:
-  create:
+  pull_request:
 
 jobs:
   build:
